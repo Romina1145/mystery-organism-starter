@@ -40,9 +40,34 @@ function pAequorFactory(specimenNum, dna) {
         return this.dna;
       }
     },
+    compareDNA(pAequorObject) {
+      console.log(`current DNA is: ${this.dna}`);
+      console.log(`Other DNA sequence: ${pAequorObject.dna}`);
+      if (this.dna === pAequorObject.dna) {
+        console.log(
+          `Specimen ${pAequorObject.specimenNum}  has an identical DNA sequence.`
+        );
+      } else {
+        let sameBases = 0;
+        for (let i = 0; i < this.dna.length; i++) {
+          if (this.dna[i] === pAequorObject.dna[i]) sameBases++;
+        }
+        console.log(`DNA in common for: ${this.specimenNum} and ${
+          pAequorObject.specimenNum
+        }:
+       ${(sameBases / this.dna.length).toFixed(2)}%`);
+      }
+    },
   };
 }
-const pAequor = pAequorFactory(5, mockUpStrand());
+
+// checking mutate method
+const pAequor = pAequorFactory(1, mockUpStrand());
+
+// checking compare method
+const pAequor1 = pAequorFactory(1, mockUpStrand());
+const pAequor2 = pAequorFactory(2, mockUpStrand());
+
 console.log(
   `pAequor BFEORE mutation\nSpecimen: ${pAequor.specimenNum}\nDNA Strand: ${pAequor.dna}`
 );
@@ -50,3 +75,5 @@ pAequor.mutate();
 console.log(
   `pAequor AFTER muatation\nSpecimen: ${pAequor.specimenNum}\nDNA Strand: ${pAequor.dna}`
 );
+
+pAequor1.compareDNA(pAequor2);
