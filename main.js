@@ -58,6 +58,20 @@ function pAequorFactory(specimenNum, dna) {
        ${(sameBases / this.dna.length).toFixed(2)}%`);
       }
     },
+    willLikelySurvive() {
+      let base = 0;
+      this.dna.forEach((dnaBase) => {
+        if (dnaBase === "C" || base === "G") base++;
+      });
+      // for (let i = 0; i < this.dna.length; i++) {
+      //   if (this.dna[i] === "C" || this.dna[i] === "G") base++;
+      const survivalPercentage = ((base / this.dna.length) * 100).toFixed(2);
+      if (survivalPercentage >= 60) {
+        console.log(`true with ${survivalPercentage}%`);
+      } else {
+        console.log(`false with ${survivalPercentage}%`);
+      }
+    },
   };
 }
 
@@ -76,4 +90,7 @@ console.log(
   `pAequor AFTER muatation\nSpecimen: ${pAequor.specimenNum}\nDNA Strand: ${pAequor.dna}`
 );
 
-pAequor1.compareDNA(pAequor2);
+// pAequor1.compareDNA(pAequor2);
+
+// checking willLikelySurvive method
+pAequor.willLikelySurvive();
