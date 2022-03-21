@@ -75,6 +75,10 @@ function pAequorFactory(specimenNum, dna) {
   };
 }
 
+const instanceOfpAequor = [];
+for (i = 0; i < 30; i++) {}
+instanceOfpAequor.push(pAequorFactory(i, mockUpStrand()));
+
 // checking mutate method
 const pAequor = pAequorFactory(1, mockUpStrand());
 
